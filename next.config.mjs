@@ -1,11 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-   images: {
+const nextConfig = {
+  images: {
     formats: ['image/webp'],
   },
   webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule: { test: { test: (arg0: string) => any; }; }) =>
+    const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
     );
 
