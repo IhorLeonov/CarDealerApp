@@ -17,9 +17,11 @@ export const sendRequest = async <T>(url: string, init?: RequestInit) => {
   }
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const getVehicleMakes = (init?: RequestInit) => {
   return sendRequest<VehicleMakesResponse>(
-    'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json',
+    `${BASE_URL}/GetMakesForVehicleType/car?format=json`,
     init,
   );
 };
@@ -30,7 +32,7 @@ export const getVehicleData = (
   init?: RequestInit,
 ) => {
   return sendRequest<VehicleDataResponse>(
-    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
+    `${BASE_URL}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
     init,
   );
 };

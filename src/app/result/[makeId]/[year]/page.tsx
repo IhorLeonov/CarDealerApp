@@ -15,10 +15,11 @@ export async function generateStaticParams() {
   const cars = res.Results;
 
   const currentYear = new Date().getFullYear();
+
   const paths = [];
 
   for (const car of cars) {
-    for (let year = 2015; year <= currentYear; year++) {
+    for (let year = 2015; year <= currentYear; year += 1) {
       paths.push({
         makeId: car.MakeId.toString(),
         year: year.toString(),
