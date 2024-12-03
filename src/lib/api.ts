@@ -1,12 +1,20 @@
 import { VehicleDataResponse, VehicleMakesResponse } from '@/types';
 
 export const sendRequest = async <T>(url: string, init?: RequestInit) => {
-  const res = await fetch(url, init);
+  try {
+    const res = await fetch(url, init);
 
-  if (!res.ok) {
-    throw new Error(await res.text());
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`API Error: ${errorText}`);
+    }
+
+    return (await res.json()) as T;
+  } catch (error) {
+    console.error('API Request failed', error);
+
+    throw error;
   }
-  return (await res.json()) as T;
 };
 
 export const getVehicleMakes = (init?: RequestInit) => {
