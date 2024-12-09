@@ -15,7 +15,6 @@ export async function generateStaticParams() {
   const cars = res.Results;
 
   const currentYear = new Date().getFullYear();
-
   const paths = [];
 
   for (const car of cars) {
@@ -27,10 +26,7 @@ export async function generateStaticParams() {
     }
   }
 
-  return paths.map((path) => ({
-    makeId: path.makeId,
-    year: path.year,
-  }));
+  return paths;
 }
 
 export default async function Page({ params: { makeId, year } }: PageProps) {
